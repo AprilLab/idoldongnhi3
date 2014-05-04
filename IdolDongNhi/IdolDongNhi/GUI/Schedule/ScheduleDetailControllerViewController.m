@@ -55,7 +55,7 @@
     // de cho luon luon thay background nay
     UIImageView *dayCollectionViewBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 40, 320, 60)];
     [dayCollectionViewBackground setContentMode:UIViewContentModeRight];
-    [dayCollectionViewBackground setImage:[UIImage imageNamed:@"bg_schedule_day.png"]];
+    [dayCollectionViewBackground setImage:[UIImage imageNamed:@"bg_schedule_day_long_320x60.png"]];
     [self.view addSubview:dayCollectionViewBackground];
     
     
