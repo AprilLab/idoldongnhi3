@@ -49,12 +49,12 @@ UILabel *lblNews;
     
     [self.view addSubview:lblTitle];
     
-    
-    
+
+    [self getDataHomepage];
     // SLIDER
     // ======
     AUICarousel *carousel = [[AUICarousel alloc] initWithFrame:CGRectMake(0, 60, 320, 250)];
-    [carousel setImages:[NSArray arrayWithObjects:@"dn1@2x.jpg", @"dn2@2x.jpg", nil]];
+    [carousel setImages:imagesSlider];
     [self.view addSubview:carousel];
     
     
@@ -65,7 +65,7 @@ UILabel *lblNews;
     movingImages.isMovingImage = YES;
     UIFont *fontRegular = [UIFont fontWithName:@"OpenSans" size:12];
     movingImages.font = fontRegular;
-    [movingImages setImage:[UIImage imageNamed:@"moving-image.jpg"] andText:@"Đông Nhi: “Muốn thành công, phải có bí quyết”"];
+    [movingImages setImage:movingImage andText:movingLabel];
     [self.view addSubview:movingImages];
     
     
@@ -79,148 +79,77 @@ UILabel *lblNews;
     [menuButton setBackgroundImage:buttonImage forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(menuButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:menuButton];
-    
-    
-    /*
-    [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateTime:) userInfo:nil repeats:YES];
-    */
 
 }
 
-/*
-
-- (void) updateTime:(NSTimer *)timer{
-    int random = arc4random() % 4;
-    SliderContentController *contentPV= [self viewControllerAtIndex:random];
+- (void) getDataHomepage{
+    imagesSlider = [[NSMutableArray alloc] init];
+    NSDictionary *listhomepageDictionary = [ManageSize getDictionaryJSONFromServerWithAPIPath:@"home"];
     
-    NSArray *viewControllers = [NSArray arrayWithObject:contentPV];
+    // xem coi co load ra ok ko, neu nhu khong ok thi thoi
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Message" message:@"Connect 3g or Wifi then try again" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    if(listhomepageDictionary == NULL){
+        [alertView show];
+        return;
+    }
     
-
-    [UIView animateWithDuration:1.0 delay:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        [_pageControll setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-    } completion:nil];
+    // check code return
+    NSString *code = (NSString *)[listhomepageDictionary objectForKey:@"code"];
+    if([code intValue] != 200){
+        [alertView show];
+        return;
+    }
     
-}
- */
+    // get the data
+    NSDictionary *data = (NSDictionary *)[listhomepageDictionary objectForKey:@"data"];
+    if(data == NULL){
+        [alertView show];
+        return;
+    }
+    
+    // get 1 so thu trong data
 
-/*
-
-int _x, _y;
-bool _moveImage;
--(void) moveImage{
-    if (_moveImage) {
-        _x= _x- 1;
-        _y= _y- 1;
-        if (_x<=0 || _y<=0) {
-            _moveImage= NO;
+    NSArray *randomPhotos = (NSArray *)[data objectForKey:@"randomphotos"];
+    
+    for(NSDictionary *listimageItem in randomPhotos)
+    {
+        id        imageObj      = [listimageItem objectForKey:@"image"];
+        NSString *imageSource   = (imageObj != [NSNull null]) ? [(NSDictionary *)imageObj objectForKey:@"source"] : NULL;
+        
+        // download image from server
+        UIImage *image = (imageSource != NULL) ? [ManageSize getImageFromServer:imageSource] : [UIImage new];
+        
+        // create new item dictionary
+        // NSDictionary *APIListpostListpostItem = @{@"image": image};
+        
+        // add to current list
+        [imagesSlider addObject:image];
+        
+    }
+    
+    NSArray *lastPost = (NSArray *)[data objectForKey:@"lastposts"];
+    if([lastPost count] > 0){
+        for(NSDictionary *listpostItem in lastPost)
+        {
+            id        imageObj      = [listpostItem objectForKey:@"image"];
+            NSString *imageSource   = (imageObj != [NSNull null]) ? [(NSDictionary *)imageObj objectForKey:@"source"] : NULL;
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                
-                [UIView beginAnimations:nil context:NULL];
-                imgThumb.alpha= 0.2;
-                [UIView setAnimationDuration:2];
-                [UIView commitAnimations];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [UIView beginAnimations:nil context:NULL];
-                    imgThumb.alpha= 1;
-                    [UIView setAnimationDuration:2];
-                    [UIView commitAnimations];
-                    UIImage *image = [UIImage imageNamed:@"moving-image.jpg"];
-                    [imgThumb setImage:image];
-                });
-            });
-
-        }
-    }else{
-        _x= _x+ 1;
-        _y= _y+ 1;
-        if (_x>=320 || _y>=200) {
-            _moveImage= YES;
-            
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                
-                [UIView beginAnimations:nil context:NULL]; // animate the following:
-                imgThumb.alpha= 0.2;
-                [UIView setAnimationDuration:2];
-                [UIView commitAnimations];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [UIView beginAnimations:nil context:NULL]; // animate the following:
-                    imgThumb.alpha= 1;
-                    [UIView setAnimationDuration:2];
-                    [UIView commitAnimations];
-                    UIImage *image = [UIImage imageNamed:@"moving-image1.jpg"];
-                    [imgThumb setImage:image];
-                });
-            });
-            
+            NSString *content = [listpostItem objectForKey:@"content"];
+            // download image from server
+            UIImage *image = (imageSource != NULL) ? [ManageSize getImageFromServer:imageSource] : [UIImage new];
+            movingImage = image;
+            movingLabel = content;
+            NSLog(@"movingLabel %@", movingLabel);
+            break;
         }
     }
     
-    [imgThumb setCenter:CGPointMake(_x, _y)];
 }
-
-*/
-
-
-/*
-UIPageViewController *_pageControll;
-- (SliderContentController *)viewControllerAtIndex:(NSUInteger)index
-{
-    SliderContentController *contentPV= [[SliderContentController alloc] init];
-    contentPV.index= index;
-    
-    return contentPV;
-}
-
-
-- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
-{
-    NSUInteger index= [(SliderContentController *)viewController index];
-    if ((index == 0) || (index == NSNotFound)) {
-        return nil;
-    }
-    index--;
-    return [self viewControllerAtIndex:index];
-}
-
--(UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
-{
-    NSUInteger index= [(SliderContentController *)viewController index];
-    
-    if (index == NSNotFound) {
-        return nil;
-    }
-    index++;
-    if (index >=5) {
-        return nil;
-    }
-    
-    return [self viewControllerAtIndex:index];
-}
-
-*/
-
-
-
-
--(void) scrollViewTouchInside
-{
-    [ManageSize toggleShowHideMusicBar];
-}
-
-
-
-
 
 -(void) menuButtonClick:(id)sender
 {
     [ManageSize showMainMenu];
 }
-
-
-
 
 - (void)didReceiveMemoryWarning
 {

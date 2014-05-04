@@ -10,6 +10,10 @@
 #import "AUICarousel.h"
 #import "AUIMovingImages.h"
 
-@interface HomeViewController : UIViewController
+@interface HomeViewController : UIViewController{
+    NSMutableArray *imagesSlider;
+    UIImage *movingImage;
+    NSString *movingLabel;
+}
 
 @end
