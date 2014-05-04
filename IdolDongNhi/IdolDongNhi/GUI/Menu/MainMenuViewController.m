@@ -41,6 +41,14 @@
     [self.view addSubview:menuButton];
     
     
+    UIImage *buttonImageHome = [UIImage imageNamed:@"menu-nav-transparent-border.png"];
+    UIButton *menuButtonHome = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 4 - buttonImage.size.width, 23, buttonImage.size.width, buttonImage.size.height)];
+    
+    [menuButtonHome setBackgroundImage:buttonImageHome forState:UIControlStateNormal];
+    [menuButtonHome addTarget:self action:@selector(homeButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:menuButtonHome];
+    
+    
     // PAGE VIEW
     // ======
     
@@ -63,6 +71,15 @@
     [ManageSize hideMainMenu];
 }
 
+- (void) homeButtonClick: (id) sender{
+    AUIFreedomController *sharedFreedomController = [AUIFreedomController sharedFreedomController];
+    AUIFreedomController *mainWrapper = [sharedFreedomController getChildViewControllerWithName:@"mainWrapper"];
+    
+    [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"homeView"] view]];
+    
+    // hide menu
+    [ManageSize hideMainMenu];
+}
 
 
 

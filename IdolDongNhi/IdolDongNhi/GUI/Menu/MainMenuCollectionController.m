@@ -142,7 +142,7 @@ int _count;
     }
              
              
-     // hide menu
+    // hide menu
     [ManageSize hideMainMenu];
 }
 
