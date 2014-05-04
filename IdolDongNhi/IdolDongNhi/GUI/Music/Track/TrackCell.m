@@ -89,7 +89,8 @@
     // set color cua title tuy vao bai dang play
     [timeSong setTextColor:(currentPlayingSongId == songId) ? myPinkColor : [UIColor whiteColor]];
     // set title
-    [timeSong setText:@"04:30"];
+    NSString *duration = (NSString *)[info objectForKey:@"duration"];
+    [timeSong setText:duration];
     
 }
 

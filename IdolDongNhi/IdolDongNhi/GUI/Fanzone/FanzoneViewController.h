@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AUITabBar.h"
 
-@interface FanzoneViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, UITabBarDelegate>
+@interface FanzoneViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, AUITabBarDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *listFanzone;
 

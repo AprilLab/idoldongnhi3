@@ -41,7 +41,7 @@
     [self.view addSubview:menuButton];
     
     
-    UIImage *buttonImageHome = [UIImage imageNamed:@"menu-nav-transparent-border.png"];
+    UIImage *buttonImageHome = [UIImage imageNamed:@"home-nav-transparent-border.png"];
     UIButton *menuButtonHome = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 4 - buttonImage.size.width, 23, buttonImage.size.width, buttonImage.size.height)];
     
     [menuButtonHome setBackgroundImage:buttonImageHome forState:UIControlStateNormal];

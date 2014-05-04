@@ -87,6 +87,10 @@
     [mainContentWewView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:ABOUTURL]]];
     [self.view addSubview:mainContentWewView];
     
+    // save cai nay vao dic than thanh luon
+    // de sau nay con chay cac ham resize duoc
+    [ManageSize setObject:mainContentWewView forKey:@"aboutMainContentWewView"];
+    
     
     // for test only:
     // log user agent apply for this web view

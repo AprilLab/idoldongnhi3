@@ -10,6 +10,6 @@
 
 @interface ScheduleDetailCell : UITableViewCell
 
-@property (nonatomic, strong) UILabel *scheduleTitle;
-@property (nonatomic, strong) UILabel *scheduleDescription;
+- (void)setInfo:(NSDictionary *)info;
+
 @end

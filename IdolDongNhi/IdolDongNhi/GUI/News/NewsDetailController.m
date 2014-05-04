@@ -31,6 +31,7 @@
     title = (NSString *)[info objectForKey:@"title"];
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

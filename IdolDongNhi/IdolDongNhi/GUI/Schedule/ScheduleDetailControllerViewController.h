@@ -10,13 +10,9 @@
 
 @interface ScheduleDetailControllerViewController : UIViewController<UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) IBOutlet UICollectionView *schedulesCollectionView;
-@property (nonatomic, strong) IBOutlet UITableView *scheduleDetailsTableView;
-
-@property (nonatomic, strong) IBOutlet UILabel *lPageTitle;
-@property (nonatomic, strong) NSString *pageTitle;
 @property NSUInteger pageIndex;
-@property (nonatomic, strong) NSMutableArray *schedules;
-@property (nonatomic, strong) NSMutableArray *schedulesDetails;
+@property (nonatomic, strong) NSMutableDictionary *monthData;
+@property (nonatomic, strong) NSMutableArray *daysData;
+@property (nonatomic, strong) NSMutableArray *eventsData;
 
 @end

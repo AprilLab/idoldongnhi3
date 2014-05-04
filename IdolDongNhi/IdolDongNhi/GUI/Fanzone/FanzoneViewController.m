@@ -9,6 +9,11 @@
 #import "FanzoneViewController.h"
 #import "FanzoneCell.h"
 #import "AUIFreedomController.h"
+#import "AUITabBarItem.h"
+#import "AUITabBar.h"
+#import "PlayingMusicView.h"
+#import "ManageSize.h"
+
 
 @interface FanzoneViewController (){
     NSDictionary *dataFanzone;
@@ -23,7 +28,71 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    
+    // bat dau khoi tao giao dien
+    [self.view setClipsToBounds:YES];
+    
+    
+    // BACKGROUND
+    // =====
+    [self.view setBackgroundColor:[UIColor blackColor]];
+    UIImage *bg_newsview = [UIImage imageNamed:@"bg_blur_2_not_include_navigation.png"];
+    UIImageView *bgImageView = [[UIImageView alloc] initWithImage:bg_newsview];
+    bgImageView.frame = CGRectMake(0, 0, bg_newsview.size.width, bg_newsview.size.height);
+    [self.view addSubview:bgImageView];
+    [self.view sendSubviewToBack:bgImageView];
+    
+    
+    // LEFT NAVIGATION BUTTON
+    // =====
+    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-nav-no-shadow.png"] style:UIBarButtonItemStylePlain target:self action:@selector(menuButtonClick)];
+    self.navigationItem.leftBarButtonItem = menuButton;
+    
+    
+    // TITLE
+    // =====
+    self.navigationItem.title = @"FAN ZONE";
+    
+    
+    // TABBAR
+    // =====
+    AUITabBarItem *tabbarItem1 = [[AUITabBarItem alloc] initWithTitle:@"Fan trò chuyện" image:nil];
+    AUITabBarItem *tabbarItem2 = [[AUITabBarItem alloc] initWithTitle:@"Tài khoản" image:nil];
+    
+    AUITabBar *aTabbar = [[AUITabBar alloc] initWithFrame:CGRectMake(0, 0, 320, 32)];
+    [aTabbar setBackgroundImage:[UIImage imageNamed:@"bg_tabbar.png"]];
+    [aTabbar setBottomShadowImage:[UIImage imageNamed:@"tabbar_bottom_shadow.png"]];
+    [aTabbar setTabbarItems:[[NSMutableArray alloc] initWithObjects:tabbarItem1, tabbarItem2, nil]];
+    
+    // hack to could recieve event
+    [AUITabBar hackToRecieveEventInView:self.view];
+    
+    aTabbar.delegate = self;
+    [self.view addSubview:aTabbar];
+    [self.view bringSubviewToFront:aTabbar];
+    
+    // set font, color
+    UIColor *myPinkColor = [UIColor colorWithRed:(float)237/255 green:0 blue:(float)140/255 alpha:1];
+    [aTabbar setItemsColor:myPinkColor forState:UIControlStateNormal];
+    [aTabbar setItemsFont:[UIFont fontWithName:@"OpenSans" size:16]];
+    
+    // border bottom
+    [aTabbar initSelectedItemBorderWithFrame:CGRectMake(47, 29, 65, 2) backgroundColor:myPinkColor];
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // ----
+    
     
     
     self.listFanzone =[[UITableView alloc] initWithFrame:CGRectMake(0, 40, 320, self.view.frame.size.height - 160)];
@@ -141,25 +210,32 @@
                         nil];
     
     dataFanzone = [NSDictionary dictionaryWithObjectsAndKeys:values1, @"avarta", values2, @"name", values3, @"message", values4, @"lasttime", nil];
-    // set background
-    UIImageView *bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_blur"]];
-    bgImageView.frame = self.view.bounds;
-    [self.view addSubview:bgImageView];
-    [self.view sendSubviewToBack:bgImageView];
-    
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu-nav"] style:UIBarButtonItemStyleBordered target:self action:@selector(menuButtonClick)];
-    
-    [menuButton setTintColor: [UIColor whiteColor]];
-    self.navigationItem.leftBarButtonItem = menuButton;
     
     
     
-    [self addTabBar];
+    
+    
+    
+    // ============
+    // bring tabbar to top
+    [self.view bringSubviewToFront:aTabbar];
+}
+
+#pragma mark - Button delegate
+
+-(void) menuButtonClick{
+    [ManageSize showMainMenu];
 }
 
 
 
 
+#pragma mark - TabBar delegate
+
+-(void)aTabBar:(AUITabBar *)aTabBar didSelectItem:(AUITabBarItem *)item atIndex:(int)index
+{
+    
+}
 
 
 
@@ -315,12 +391,6 @@ UITabBarItem *preItem1;
 }
 
 
-// endprogrss keyboard
--(void) menuButtonClick{
-    
-    [[AUIFreedomController sharedFreedomController] changeChildViewControllerFrame:CGRectNull withName:@"mainMenu" withDuration:0.2 delay:0];
-    
-}
 
 #pragma listFanzone
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface ScheduleCell : UICollectionViewCell
-@property (nonatomic, strong) IBOutlet UILabel *scheduleTDay;
-@property (nonatomic, strong) IBOutlet UILabel *scheduleTimer;
+
+- (void)setInfo:(NSDictionary *)info;
+
 @end

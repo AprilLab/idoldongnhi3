@@ -104,6 +104,7 @@
     UICollectionView *galleryAlbumCollectionView = (UICollectionView *)[ManageSize objectForKey:@"galleryAlbumCollectionView"];
     UICollectionView *albumCollectionView = (UICollectionView *)[ManageSize objectForKey:@"albumCollectionView"];
     UICollectionView *listTrackCollectionView = (UICollectionView *)[ManageSize objectForKey:@"listTrackCollectionView"];
+    UIWebView *aboutMainContentWewView = (UIWebView *)[ManageSize objectForKey:@"aboutMainContentWewView"];
     
     // co tabbar {
     tempW = screenWidth;
@@ -130,6 +131,9 @@
     
     if(albumCollectionView != NULL)
         [albumCollectionView setFrame:CGRectMake(albumCollectionView.frame.origin.x, albumCollectionView.frame.origin.y, tempW, tempH)];
+    
+    if(aboutMainContentWewView != NULL)
+        [aboutMainContentWewView setFrame:CGRectMake(aboutMainContentWewView.frame.origin.x, aboutMainContentWewView.frame.origin.y, tempW, tempH)];
     // }
     
     // trang musc {
@@ -137,6 +141,7 @@
     if(listTrackCollectionView != NULL)
         [listTrackCollectionView setFrame:CGRectMake(0, 216, tempW, tempH)];
     // }
+    
 }
 
 
