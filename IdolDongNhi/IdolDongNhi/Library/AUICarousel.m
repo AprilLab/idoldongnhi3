@@ -38,7 +38,7 @@
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(scrollView.frame.size.width * i, 0, scrollView.frame.size.width, scrollView.frame.size.height)];
         [imageView setImage:[self.images objectAtIndex:i]];
-        [imageView setContentMode:UIViewContentModeScaleAspectFit];
+        [imageView setContentMode:UIViewContentModeScaleToFill];
         [scrollView addSubview:imageView];
     }
     

@@ -57,6 +57,9 @@ UILabel *lblNews;
     [carousel setImages:imagesSlider];
     [self.view addSubview:carousel];
     
+    UITapGestureRecognizer *tapCarousel = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showGallery:)];
+    [carousel addGestureRecognizer:tapCarousel];
+    
     
     
     // MOVING IMAGES
@@ -67,7 +70,8 @@ UILabel *lblNews;
     movingImages.font = fontRegular;
     [movingImages setImage:movingImage andText:movingLabel];
     [self.view addSubview:movingImages];
-    
+    UITapGestureRecognizer *tapMovingView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDongNhiNews:)];
+    [movingImages addGestureRecognizer:tapMovingView];
     
     
     // MENU BUTTON
@@ -80,6 +84,21 @@ UILabel *lblNews;
     [menuButton addTarget:self action:@selector(menuButtonClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:menuButton];
 
+}
+
+- (void) showGallery:(UITapGestureRecognizer *)gesture{
+    AUIFreedomController *sharedFreedomController = [AUIFreedomController sharedFreedomController];
+    AUIFreedomController *mainWrapper = [sharedFreedomController getChildViewControllerWithName:@"mainWrapper"];
+    
+    [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"galleryView"] view]];
+    
+}
+
+- (void) showDongNhiNews: (UITapGestureRecognizer *) gesture{
+    AUIFreedomController *sharedFreedomController = [AUIFreedomController sharedFreedomController];
+    AUIFreedomController *mainWrapper = [sharedFreedomController getChildViewControllerWithName:@"mainWrapper"];
+    
+    [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"newsView"] view]];
 }
 
 - (void) getDataHomepage{
