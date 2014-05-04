@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>9E5B7D45-CEB5-459D-86CA-1E4C9A8CFA32</string>
+	<string>49458ABB-462B-42F5-BACE-647191426047</string>
 	<key>IDESourceControlProjectName</key>
 	<string>IdolDongNhi</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>5F46D879-3E13-43FD-88C8-CD746E9FB189</key>
-		<string>https://github.com/AprilLab/idoldongnhi.git</string>
+		<key>4A6D0624-E03A-4951-AD66-7B58961870E4</key>
+		<string>https://github.com/AprilLab/idoldongnhi3.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>IdolDongNhi/IdolDongNhi.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>5F46D879-3E13-43FD-88C8-CD746E9FB189</key>
+		<key>4A6D0624-E03A-4951-AD66-7B58961870E4</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/AprilLab/idoldongnhi.git</string>
+	<string>https://github.com/AprilLab/idoldongnhi3.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>5F46D879-3E13-43FD-88C8-CD746E9FB189</string>
+	<string>4A6D0624-E03A-4951-AD66-7B58961870E4</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>5F46D879-3E13-43FD-88C8-CD746E9FB189</string>
+			<string>4A6D0624-E03A-4951-AD66-7B58961870E4</string>
 			<key>IDESourceControlWCCName</key>
-			<string>idoldongnhi</string>
+			<string>idoldongnhi3</string>
 		</dict>
 	</array>
 </dict>
