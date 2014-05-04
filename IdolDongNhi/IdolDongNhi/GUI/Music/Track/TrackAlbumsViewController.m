@@ -180,13 +180,13 @@
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(scheduledTimerUpdateTime:) userInfo:nil repeats:YES];
     
     //prev button
-    prevButton = [[UIButton alloc] initWithFrame:CGRectMake(90, 30, 25, 25)];
+    prevButton = [[UIButton alloc] initWithFrame:CGRectMake(90, 31, 25, 25)];
     [prevButton setImage:[UIImage imageNamed:@"icon_prev_25x25.png"] forState:UIControlStateNormal];
     [prevButton addTarget:self action:@selector(actionPrevSong:) forControlEvents:UIControlEventTouchUpInside];
     [musicControlsBar addSubview:prevButton];
     
     // next Button
-    nextButton = [[UIButton alloc] initWithFrame:CGRectMake(203, 30, 25, 25)];
+    nextButton = [[UIButton alloc] initWithFrame:CGRectMake(203, 31, 25, 25)];
     [nextButton setImage:[UIImage imageNamed:@"icon_next_25x25.png"] forState:UIControlStateNormal];
     [nextButton addTarget:self action:@selector(actionNextSong:) forControlEvents:UIControlEventTouchUpInside];
     [musicControlsBar addSubview:nextButton];
