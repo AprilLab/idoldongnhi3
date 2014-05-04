@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<self>
+    <AUIFreedomController name="mainWrapper">
+        <HomeViewController name="homeView" />
+    </AUIFreedomController>
+    <PlayingMusicView name="playingMusicBar" height="60" bottom="-70" />
+
+</self>
