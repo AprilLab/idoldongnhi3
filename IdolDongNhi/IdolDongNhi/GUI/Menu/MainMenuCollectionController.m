@@ -112,36 +112,30 @@ int _count;
     // show section
     switch (indexPath.row) {
         case 0:{
-            NSLog(@"news");
             [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"newsView"] view]];
             break;
         }
         case 1:{
-            NSLog(@"musics");
             [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"musicView"] view]];
             break;
         }
         case 2:{
-            NSLog(@"gallery");
             [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"galleryView"] view]];
             break;
         }
         case 3:{
-            NSLog(@"video");
             [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"videoView"] view]];
             break;
         }
         case 4:
-            NSLog(@"fanzoneView");
             [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"fanzoneView"] view]];
             break;
         case 5:{
-            NSLog(@"scheduleView");
             [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"scheduleView"] view]];
             break;
         }
         case 6:
-
+            [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"dongnhiView"] view]];
             break;
         default:
             break;

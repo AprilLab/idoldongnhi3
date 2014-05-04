@@ -18,6 +18,7 @@
 #import "AlbumTracksViewController.h"
 #import "SchedulesControllerViewController.h"
 #import "FanzoneViewController.h"
+#import "DongNhiViewController.h"
 #import <CoreText/CoreText.h>
 
 @implementation AppDelegate
@@ -127,12 +128,19 @@
     [mainWrapperController addChildViewController:navController withName:@"scheduleView" withFrame:CGRectNull];
     // < /SCHEDULE >
     
-    // < SCHEDULE >
+    // < FANZONE >
     FanzoneViewController *fanzoneViewController = [[FanzoneViewController alloc] init];
     navController = [[UINavigationController alloc] initWithRootViewController:fanzoneViewController];
     [navController.view setClipsToBounds:YES];
     [mainWrapperController addChildViewController:navController withName:@"fanzoneView" withFrame:CGRectNull];
-    // < /SCHEDULE >
+    // < /FANZONE >
+    
+    // < DONGNHI >
+    DongNhiViewController *dongnhiViewController = [[DongNhiViewController alloc] init];
+    navController = [[UINavigationController alloc] initWithRootViewController:dongnhiViewController];
+    [navController.view setClipsToBounds:YES];
+    [mainWrapperController addChildViewController:navController withName:@"dongnhiView" withFrame:CGRectNull];
+    // < /DONGNHI >
     
     
     // < HOME PAGE >

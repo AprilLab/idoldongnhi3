@@ -123,6 +123,7 @@
 		54A600AB190C21B000DAFA3B /* ScheduleViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A600A5190C21B000DAFA3B /* ScheduleViewFlowLayout.m */; };
 		54A600AE190C245A00DAFA3B /* JingRoundView.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A600AD190C245A00DAFA3B /* JingRoundView.m */; };
 		54A600B1190C24D100DAFA3B /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 54A600B0190C24D100DAFA3B /* iCarousel.m */; };
+		54ACF40919169DB600D100C6 /* DongNhiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 54ACF40819169DB600D100C6 /* DongNhiViewController.m */; };
 		54B2A2A5190EEE9B00F19B1A /* disc_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54B2A2A3190EEE9B00F19B1A /* disc_play@2x.png */; };
 		54B2A2A6190EEE9B00F19B1A /* disc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 54B2A2A4190EEE9B00F19B1A /* disc@2x.png */; };
 		54CB2F0F190B39F800C60AB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54CB2F0E190B39F800C60AB9 /* Foundation.framework */; };
@@ -334,6 +335,8 @@
 		54A600AD190C245A00DAFA3B /* JingRoundView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JingRoundView.m; path = Lib3party/JingRoundView.m; sourceTree = "<group>"; };
 		54A600AF190C24D100DAFA3B /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iCarousel.h; path = Lib3party/iCarousel.h; sourceTree = "<group>"; };
 		54A600B0190C24D100DAFA3B /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iCarousel.m; path = Lib3party/iCarousel.m; sourceTree = "<group>"; };
+		54ACF40719169DB600D100C6 /* DongNhiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DongNhiViewController.h; path = GUI/DongNhi/DongNhiViewController.h; sourceTree = "<group>"; };
+		54ACF40819169DB600D100C6 /* DongNhiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DongNhiViewController.m; path = GUI/DongNhi/DongNhiViewController.m; sourceTree = "<group>"; };
 		54B2A2A3190EEE9B00F19B1A /* disc_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "disc_play@2x.png"; path = "music/disc_play@2x.png"; sourceTree = "<group>"; };
 		54B2A2A4190EEE9B00F19B1A /* disc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "disc@2x.png"; path = "music/disc@2x.png"; sourceTree = "<group>"; };
 		54CB2F0B190B39F800C60AB9 /* IdolDongNhi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdolDongNhi.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -665,6 +668,15 @@
 			name = Album;
 			sourceTree = "<group>";
 		};
+		54ACF40619169D8900D100C6 /* DongNhi */ = {
+			isa = PBXGroup;
+			children = (
+				54ACF40719169DB600D100C6 /* DongNhiViewController.h */,
+				54ACF40819169DB600D100C6 /* DongNhiViewController.m */,
+			);
+			name = DongNhi;
+			sourceTree = "<group>";
+		};
 		54B2A2A2190EEE7700F19B1A /* music */ = {
 			isa = PBXGroup;
 			children = (
@@ -759,6 +771,7 @@
 		54CB2F3D190B3A2000C60AB9 /* GUI */ = {
 			isa = PBXGroup;
 			children = (
+				54ACF40619169D8900D100C6 /* DongNhi */,
 				512680B3190D4F2700731C93 /* ManageSize.h */,
 				512680B4190D4F2700731C93 /* ManageSize.m */,
 				510EC5E7190D70410006436B /* Fanzone */,
@@ -1153,6 +1166,7 @@
 				54CB2F71190B3F2400C60AB9 /* PhotosViewController.m in Sources */,
 				5194C0C8190EC41E00880EAC /* PostCollectionViewFlowLayout.m in Sources */,
 				54A60099190C21A300DAFA3B /* TrackCellCollectionViewFlowLayout.m in Sources */,
+				54ACF40919169DB600D100C6 /* DongNhiViewController.m in Sources */,
 				54A600AE190C245A00DAFA3B /* JingRoundView.m in Sources */,
 				511331E6191450CC00B17593 /* NewsCollectionViewFlowLayout.m in Sources */,
 				840F8676190EE0D20019A32E /* TrackAlbumsViewController.m in Sources */,
