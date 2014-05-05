@@ -81,11 +81,6 @@
     [ManageSize hideMainMenu];
 }
 
-
-
-
-
-
 // Index nao cung chi co 1 controller
 // cho nen o day se return 1 controller thoi
 - (MainMenuCollectionController *)viewControllerAtIndex:(NSUInteger)index{
