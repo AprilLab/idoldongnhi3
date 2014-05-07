@@ -243,95 +243,6 @@
 
 
 
-UILabel *borderSelected2;
-UITabBar *tabBar;
-UITabBarController *tb;
-float selectBarPosition;
-NSArray *itemsArray;
-UITabBarItem *preItem1;
-
--(void)addTabBar{
-    UITabBarItem *firstItem = [[UITabBarItem alloc] initWithTitle:@"Fan trò chuyện" image:nil tag:1];
-    firstItem.titlePositionAdjustment= UIOffsetMake(0, -10.0);
-    [firstItem setTitleTextAttributes:
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIColor colorWithRed:236.0/255 green:1.0/255 blue:140.0/255 alpha:1], NSForegroundColorAttributeName,
-      [UIFont fontWithName:@"Arial" size:12.0], NSFontAttributeName,
-      nil]
-                             forState:UIControlStateNormal];
-    preItem1= firstItem;
-    
-    
-    UITabBarItem *secondItem = [[UITabBarItem alloc] initWithTitle:@"Tài khoản" image:nil tag:2];
-    secondItem.titlePositionAdjustment= UIOffsetMake(0, -10.0);
-    [secondItem setTitleTextAttributes:
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIColor colorWithRed:136.0/255 green:136.0/255 blue:136.0/255 alpha:1], NSForegroundColorAttributeName,
-      [UIFont fontWithName:@"Arial" size:12.0], NSFontAttributeName,
-      nil]
-                              forState:UIControlStateNormal];
-    
-    
-    itemsArray = [[NSArray alloc] initWithObjects:firstItem, secondItem, nil];
-    
-    tabBar= [[UITabBar alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
-    [tabBar setBarTintColor:[UIColor blackColor]];
-    [tabBar setItems:itemsArray animated:YES];
-    
-    tabBar.delegate= self;
-    [self.view addSubview:tabBar];
-    
-    
-    //Style for tabbar
-    UILabel *border= [[UILabel alloc] initWithFrame:CGRectMake(0, 40, 320, 2)];
-    border.backgroundColor= [UIColor colorWithRed:236.0/255 green:1.0/255 blue:140.0/255 alpha:1];
-    [self.view addSubview:border];
-    
-    
-    
-    //Style for tabbar
-    borderSelected2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, 320/([tabBar items].count), 5)];
-    borderSelected2.backgroundColor= [UIColor colorWithRed:236.0/255 green:1.0/255 blue:140.0/255 alpha:1];
-    [self.view addSubview:borderSelected2];
-    
-    
-    selectBarPosition= (float)320/[tabBar items].count;
-}
-
-
--(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    float cPosition= (item.tag- 1)* selectBarPosition;
-    [preItem1 setTitleTextAttributes:
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIColor colorWithRed:136.0/255 green:136.0/255 blue:136.0/255 alpha:1], NSForegroundColorAttributeName,
-      [UIFont fontWithName:@"Arial" size:12.0], NSFontAttributeName,
-      nil]
-                           forState:UIControlStateNormal];
-    
-    
-    [item setTitleTextAttributes:
-     [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIColor colorWithRed:236.0/255 green:1.0/255 blue:140.0/255 alpha:1], NSForegroundColorAttributeName,
-      [UIFont fontWithName:@"Arial" size:12.0], NSFontAttributeName,
-      nil]
-                        forState:UIControlStateNormal];
-    
-    
-    
-    
-    
-    
-    [UIView beginAnimations:nil context:NULL];
-    borderSelected2.frame= CGRectMake(cPosition, 35, 320/([tabBar items].count), 5);
-    [UIView setAnimationDuration:2];
-    [UIView commitAnimations];
-    
-    preItem1= item;
-}
-
-
-
-
 
 
 #pragma keyboard show and hide
@@ -422,7 +333,7 @@ UITabBarItem *preItem1;
 
 - (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected %d row", indexPath.row);
+    //NSLog(@"selected %i row", indexPath.row);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

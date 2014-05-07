@@ -34,15 +34,14 @@
     
     for (NSInteger i = 0; i < [self.images count]; i++)
     {
-        
-        
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(scrollView.frame.size.width * i, 0, scrollView.frame.size.width, scrollView.frame.size.height)];
         [imageView setImage:[self.images objectAtIndex:i]];
-        [imageView setContentMode:UIViewContentModeScaleToFill];
+        [imageView setContentMode:UIViewContentModeScaleAspectFill];
+        [imageView setClipsToBounds:YES];
         [scrollView addSubview:imageView];
     }
     
-
+    
     [scrollView setContentSize:CGSizeMake(scrollViewSize.width * [self.images count], scrollViewSize.height)];
     
     [self addSubview:scrollView];

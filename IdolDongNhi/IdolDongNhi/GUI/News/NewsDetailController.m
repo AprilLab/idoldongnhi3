@@ -83,7 +83,7 @@
     [mainContentWewView setBackgroundColor:[UIColor clearColor]];
     [mainContentWewView setOpaque:NO];
     [mainContentWewView setDelegate:self];
-    [mainContentWewView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[ManageSize addHTTP:[NSString stringWithFormat:NEWSDETAILURL, articleId]]]]];
+    [mainContentWewView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[ManageSize addHTTP:[NSString stringWithFormat:NEWSDETAILURL, (int)articleId]]]]];
     [self.view addSubview:mainContentWewView];
     
     

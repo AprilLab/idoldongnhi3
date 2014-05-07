@@ -50,8 +50,8 @@
     
     // BACK BUTTON
     // =====
-    UIImage *backButtonImage = [UIImage imageNamed:@"back_49x49.png"];
-    UIButton *backButtonClick = [[UIButton alloc] initWithFrame:CGRectMake(4, 20, backButtonImage.size.width, backButtonImage.size.height)];
+    UIImage *backButtonImage = [UIImage imageNamed:@"back.png"];
+    UIButton *backButtonClick = [[UIButton alloc] initWithFrame:CGRectMake(16, 32, backButtonImage.size.width, backButtonImage.size.height)];
     
     [backButtonClick setBackgroundImage:backButtonImage forState:UIControlStateNormal];
     [backButtonClick addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -85,7 +85,7 @@
     [totalLikeView setTextColor:[UIColor whiteColor]];
     [totalLikeView setFont:fontBold];
     [totalLikeView setText:[NSString stringWithFormat:@"%i", like]];
-    //[self.view addSubview:totalLikeView];
+    [self.view addSubview:totalLikeView];
     
     
     // TEXT COMMENT (total comment)
@@ -97,36 +97,26 @@
     [totalCommentView setTextColor:[UIColor whiteColor]];
     [totalCommentView setFont:fontBold];
     [totalCommentView setText:[NSString stringWithFormat:@"%i", comment]];
-    //[self.view addSubview:totalCommentView];
+    [self.view addSubview:totalCommentView];
     
 
     
     // CONTENT (Expandable TextView)
     // =====
     
-    contentView = [[AUIExpandableTextView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 63 /*text height*/  - 8  /*bottom margin*/, 320, 63) andMaxHeight:200];
-    [contentView setTextContainerInset:UIEdgeInsetsMake(0, 8, 0, 8)];
+    contentView = [[AUIExpandableTextView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 40 /*text height*/  - 40  /*bottom margin*/, 320, 40) andMaxHeight:200];
+    [contentView setTextContainerInset:UIEdgeInsetsMake(0, 4, 0, 4)];
     [contentView setTextColor:[UIColor whiteColor]];
     [contentView setFont:fontRegular];
     [contentView setText:content];
     //[contentView setTextShadowColor:[UIColor blackColor] offset:CGSizeMake(1, 1)];
     
-    
     // render lai
     [contentView render];
     [self.view addSubview:contentView];
-}
-
-- (void) viewDidAppear:(BOOL)animated
-{
-    // hide status bar
-    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
-}
-
-- (void) viewWillDisappear:(BOOL)animated
-{
-    // tra status bar ve lai nhu cu
-    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    
+    
+    
 }
 
 

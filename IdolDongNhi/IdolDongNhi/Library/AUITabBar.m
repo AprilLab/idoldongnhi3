@@ -157,10 +157,10 @@
     
     // set ngay vao cai thang selected
     self.selectedItem = tabbarItem;
-    self.selectedIndex = index;
+    self.selectedIndex = (int)index;
     
     // cuoi cung don gian la goi qua delegate
-    [self.delegate aTabBar:self didSelectItem:tabbarItem atIndex:index];
+    [self.delegate aTabBar:self didSelectItem:tabbarItem atIndex:(int)index];
 }
 
 @end

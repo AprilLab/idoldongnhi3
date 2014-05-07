@@ -63,7 +63,8 @@
     // =====
     ScheduleViewFlowLayout *flow = [[ScheduleViewFlowLayout alloc] init];
     [flow setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-    dayCollectionView =[[UICollectionView alloc] initWithFrame:CGRectMake(0, 40, 320, 60) collectionViewLayout:flow];
+    dayCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 40, 320, 60) collectionViewLayout:flow];
+    [dayCollectionView setShowsHorizontalScrollIndicator:NO];
     [dayCollectionView setBackgroundColor:[UIColor clearColor]];
     
     

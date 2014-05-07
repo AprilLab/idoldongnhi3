@@ -30,13 +30,13 @@
     
     
     
-    UIFont *fontRegular = [UIFont fontWithName:@"OpenSans" size:15];
+    UIFont *fontRegular = [UIFont fontWithName:@"OpenSans" size:14];
     UIFont *fontBold = [UIFont fontWithName:@"OpenSans-Bold" size:15];
 
     
     // BACKGROUND
     // =====
-    [self setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.1]];
+    [self setBackgroundColor:[UIColor blackColor]];
     
     if(bgImageView == NULL)
     {
@@ -46,7 +46,7 @@
     // tinh toan lai kich thuoc cho phu hop
     float bgImageViewWidth = self.frame.size.width;
     float bgImageViewHeight = bgImageViewWidth * image.size.height / image.size.width;
-    [bgImageView setFrame:CGRectMake(0.5, 0.5, bgImageViewWidth - 1, bgImageViewHeight -1)];
+    [bgImageView setFrame:CGRectMake(0, 0, bgImageViewWidth, bgImageViewHeight)];
     [bgImageView setImage:image];
     
     // add them inset shadow bottom
@@ -69,7 +69,7 @@
         [contentView setNumberOfLines:0];
         [self addSubview:contentView];
     }
-    [contentView setFrame:CGRectMake(4, self.frame.size.height - 42 /*text height*/  - 4 /*bottom margin*/, 292, 42)];
+    [contentView setFrame:CGRectMake(4, self.frame.size.height - 40 /*text height*/  - 4 /*bottom margin*/, 195, 40)];
     [contentView setText:content];
     
     
@@ -79,7 +79,7 @@
     {
         UIImage *icon_heart = [UIImage imageNamed:@"icon_heart_20x20"];
         imageHeartView = [[UIImageView alloc] initWithImage:icon_heart];
-    //    [self addSubview:imageHeartView];
+        [self addSubview:imageHeartView];
     }
     [imageHeartView setFrame:CGRectMake(215, self.frame.size.height - 20 /*image height*/  - 23 /*bottom margin*/, 20, 20)];
     
@@ -91,7 +91,7 @@
     {
         UIImage *icon_comment = [UIImage imageNamed:@"icon_comment_20x20"];
         imageCommentView = [[UIImageView alloc] initWithImage:icon_comment];
-    //    [self addSubview:imageCommentView];
+        [self addSubview:imageCommentView];
     }
     [imageCommentView setFrame:CGRectMake(265, self.frame.size.height - 20 /*image height*/  - 23 /*bottom margin*/, 20, 20)];
     
@@ -105,7 +105,7 @@
         [totalLikeView setTextColor:[UIColor whiteColor]];
         [totalLikeView setFont:fontBold];
         
-    //    [self addSubview:totalLikeView];
+        [self addSubview:totalLikeView];
     }
     [totalLikeView setFrame:CGRectMake(200, self.frame.size.height - 15 /*height*/  - 6 /*bottom margin*/, 50, 15)];
     [totalLikeView setText:[NSString stringWithFormat:@"%i", like]];
@@ -119,7 +119,7 @@
         [totalCommentView setTextAlignment:NSTextAlignmentCenter];
         [totalCommentView setTextColor:[UIColor whiteColor]];
         [totalCommentView setFont:fontBold];
-    //    [self addSubview:totalCommentView];
+        [self addSubview:totalCommentView];
     }
     [totalCommentView setFrame:CGRectMake(250, self.frame.size.height - 15 /*height*/  - 6 /*bottom margin*/, 50, 15)];
     [totalCommentView setText:[NSString stringWithFormat:@"%i", comment]];

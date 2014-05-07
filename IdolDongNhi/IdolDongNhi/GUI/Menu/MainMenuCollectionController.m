@@ -26,7 +26,7 @@ int _count;
     [super viewDidLoad];
     _count= 0;
     UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
-    UICollectionView *_collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, 320, 410)
+    UICollectionView *_collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 30, 320, 380)
                                        collectionViewLayout:layout];
     [_collectionView setDataSource:self];
     [_collectionView setDelegate:self];
@@ -46,7 +46,7 @@ int _count;
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 7;
+    return 6;
 }
 
 
@@ -54,7 +54,8 @@ int _count;
 
 
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
     
     static NSString *cellIdentifier = @"Cell";
     MainMenuCollectionCell *cell= [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -85,18 +86,19 @@ int _count;
             cell.imgThumb.image= [UIImage imageNamed:@"video"];
             cell.lblTitle.text= @"VIDEO";
             break;
+        //case 4:
+        //    cell.imgThumb.image= [UIImage imageNamed:@"fanzone"];
+        //    cell.lblTitle.text= @"FAN ZONE";
+        //    break;
         case 4:
-            cell.imgThumb.image= [UIImage imageNamed:@"fanzone"];
-            cell.lblTitle.text= @"FAN ZONE";
-            break;
-        case 5:
             cell.imgThumb.image= [UIImage imageNamed:@"calendar"];
             cell.lblTitle.text= @"LỊCH DIỄN";
             break;
-        case 6:
+        case 5:
             cell.imgThumb.image= [UIImage imageNamed:@"profile"];
             cell.lblTitle.text= @"ĐÔNG NHI";
             break;
+            
         default:
             break;
     }
@@ -127,16 +129,18 @@ int _count;
             [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"videoView"] view]];
             break;
         }
-        case 4:
-            [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"fanzoneView"] view]];
-            break;
-        case 5:{
+        //case 4:
+        //    [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"fanzoneView"] view]];
+        //    break;
+        case 4:{
             [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"scheduleView"] view]];
             break;
         }
-        case 6:
+        case 5:{
             [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"dongnhiView"] view]];
             break;
+        }
+            
         default:
             break;
     }
@@ -175,11 +179,4 @@ int _count;
 
 
 
-
-
-
-- (void)didReceiveMemoryWarning{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 @end

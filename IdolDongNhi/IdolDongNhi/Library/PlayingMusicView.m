@@ -337,11 +337,11 @@ static id sharePlaying;
 {
     if (object == self.avPlayer && [keyPath isEqualToString:@"status"]) {
         if (self.avPlayer.status == AVPlayerStatusFailed) {
-            NSLog(@"AVPlayer Failed");
+            //NSLog(@"AVPlayer Failed");
         } else if (self.avPlayer.status == AVPlayerStatusReadyToPlay) {
-            NSLog(@"AVPlayer Ready to Play");
+            //NSLog(@"AVPlayer Ready to Play");
         } else if (self.avPlayer.status == AVPlayerItemStatusUnknown) {
-            NSLog(@"AVPlayer Unknown");
+            //NSLog(@"AVPlayer Unknown");
         } else if (self.avPlayer.status == AVPlayerActionAtItemEndPause){
             
         }
@@ -554,7 +554,7 @@ static id sharePlaying;
             continue;
         }
         if(findToCurrent){
-            self.currentSongId = [[songItem objectForKey:@"id"] integerValue];
+            self.currentSongId = (int)[[songItem objectForKey:@"id"] integerValue];
             return [[songItem objectForKey:@"file"] objectForKey:@"source"];
         }
     }
@@ -565,7 +565,7 @@ static id sharePlaying;
     for(int i = 0; i< [data count]; i++){
         if(i > 0){
             if([[data[i] objectForKey:@"id"] integerValue]  == songId){
-                self.currentSongId = [[data[i-1] objectForKey:@"id"] integerValue];
+                self.currentSongId = (int)[[data[i-1] objectForKey:@"id"] integerValue];
                 return [[data[i-1] objectForKey:@"file"] objectForKey:@"source"];
                 break;
             }
@@ -622,7 +622,7 @@ static id sharePlaying;
     
     preparingExternalStringUrl = stringUrl;
     
-    NSLog(@"[MUSIC] prepare song: %@ ...", preparingExternalStringUrl);
+    //NSLog(@"[MUSIC] prepare song: %@ ...", preparingExternalStringUrl);
     
     // bay gio la se chuan bi play, nen se goi callback
     if(self.delegate != NULL)
@@ -647,7 +647,7 @@ static id sharePlaying;
 }
 -(void)mainthreadDonePrepareToPlayNewSong
 {
-    NSLog(@"[MUSIC] prepare song: %@ done!", preparingExternalStringUrl);
+    //NSLog(@"[MUSIC] prepare song: %@ done!", preparingExternalStringUrl);
     
     preparingExternalStringUrl = nil;
 }

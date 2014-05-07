@@ -216,21 +216,17 @@
 
 - (BOOL) collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    // get ra data item
-    //NSDictionary *APIGalleryCustomListphotoListphotoItem =(NSDictionary *)[APIGalleryCustomListphotoListphoto objectAtIndex:indexPath.row];
-    // he he he
-    // ha ha ha
     
     // VIDEO DETAIL VIEW
     // =====
     PhotosViewController *photosViewController = [[PhotosViewController alloc] init];
     
-    
-    // push len thoi
+    // present len thoi
     photosViewController.photosGallery = APIGalleryCustomListphotoListphoto;
     photosViewController.photoGalleryName = name;
-    photosViewController.currentPhotoId = indexPath.row;
-    [self.navigationController pushViewController:photosViewController animated:YES];
+    photosViewController.currentPhotoId = (int)indexPath.row;
+    [self presentViewController:photosViewController animated:YES completion:nil];
+    
     
     return NO;
 }
@@ -349,7 +345,7 @@
     });
     
     // load post
-    [self getGalleryHasId:galleryId listphotoStart:APIGalleryCustomListphotoStart limit:10];
+    [self getGalleryHasId:(int)galleryId listphotoStart:APIGalleryCustomListphotoStart limit:10];
     
     // reload view in main thread
     [self performSelectorOnMainThread:@selector(mainthreadLoadmoreGalleryCustomListphoto) withObject:nil waitUntilDone:YES];

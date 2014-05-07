@@ -196,7 +196,7 @@
 // =============
 -(void)getListgalleryStart:(int)start limit:(int)limit
 {
-    NSLog(@"getListgalleryStart:%d limit:%d ...", start, limit);
+    //NSLog(@"getListgalleryStart:%d limit:%d ...", start, limit);
     
     NSDictionary *listgalleryDictionary = [ManageSize getDictionaryJSONFromServerWithAPIPath:[NSString stringWithFormat:@"listgallery/start/%i/limit/%i", start, limit]];
     
@@ -241,7 +241,7 @@
         [APIListgalleryListgallery addObject:APIListgalleryListgalleryItem];
     }
     
-    NSLog(@"getListgalleryStart:%d limit:%d -> done!", start, limit);
+    //NSLog(@"getListgalleryStart:%d limit:%d -> done!", start, limit);
 }
 
 

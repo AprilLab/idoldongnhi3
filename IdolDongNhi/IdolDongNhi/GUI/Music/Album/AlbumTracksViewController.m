@@ -73,9 +73,12 @@
     // hien thi cover cua cac album theo chieu ngang du don
 
     albumCarouselView = [[iCarousel alloc] initWithFrame:CGRectMake(0, 1, self.view.frame.size.width, 215)];
-    [albumCarouselView setType:iCarouselTypeCoverFlow2];
+    [albumCarouselView setType:iCarouselTypeRotary];
     [albumCarouselView setDelegate:self];
     [albumCarouselView setDataSource:self];
+    [albumCarouselView setBounces:YES];
+    [albumCarouselView setBounceDistance:0.45f];
+    [albumCarouselView setScrollSpeed:0.8f];
     [self.view addSubview:albumCarouselView];
     
     // nhay toi cai album mong muon
@@ -254,6 +257,7 @@
 
 - (void) carouselWillBeginScrollingAnimation:(iCarousel *)carousel
 {
+    
 }
 
 - (void) carouselDidEndScrollingAnimation:(iCarousel *)carousel
@@ -263,7 +267,7 @@
     // thi se update 1 so thu
     
     // update currentPresentingAlbumId
-    self.currentPresentingAlbumId = carousel.currentItemIndex;
+    self.currentPresentingAlbumId = (int)carousel.currentItemIndex;
     
     // update title
     self.navigationItem.title = [[self.APIListalbumListalbum objectAtIndex:self.currentPresentingAlbumId] objectForKey:@"name"];

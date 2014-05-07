@@ -32,7 +32,7 @@
 }
 
 
-- (NSInteger)addChildViewController:(UIViewController *)viewController withFrame:(CGRect)frame
+- (int)addChildViewController:(UIViewController *)viewController withFrame:(CGRect)frame
 {
     [self.viewControllers addObject:viewController];
     
@@ -50,7 +50,7 @@
     [viewController didMoveToParentViewController:self];
     
     // return index
-    NSInteger count = [self.viewControllers count];
+    int count = (int)[self.viewControllers count];
     return count - 1;
 }
 

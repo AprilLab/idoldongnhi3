@@ -26,59 +26,43 @@ const int kGallerySpaceBetweenImage = 0;
 
 @implementation PhotosViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    
     // bat dau khoi tao giao dien
     [self.view setClipsToBounds:YES];
+    [self.view setTintColor:[UIColor whiteColor]];
     
+    //UIFont *fontRegular = [UIFont fontWithName:@"OpenSans" size:15];
+    //UIFont *fontBold = [UIFont fontWithName:@"OpenSans-Bold" size:15];
+
     
-    // BACKGROUND
+    // BACKGROUND COLOR
     // =====
     [self.view setBackgroundColor:[UIColor blackColor]];
-    UIImage *bg_newsview = [UIImage imageNamed:@"bg_blur_2_not_include_navigation.png"];
-    UIImageView *bgImageView = [[UIImageView alloc] initWithImage:bg_newsview];
-    bgImageView.frame = CGRectMake(0, 0, bg_newsview.size.width, bg_newsview.size.height);
-    [self.view addSubview:bgImageView];
-    [self.view sendSubviewToBack:bgImageView];
+
     
     
-    // LEFT NAVIGATION BUTTON
+    // BACK BUTTON
     // =====
-    UIBarButtonItem *menuButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back.png"] style:UIBarButtonItemStylePlain target:self action:@selector(menuButtonClick)];
-    self.navigationItem.leftBarButtonItem = menuButton;
+    UIImage *backButtonImage = [UIImage imageNamed:@"back_49x49.png"];
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(4, 20, backButtonImage.size.width, backButtonImage.size.height)];
+    
+    [backButton setBackgroundImage:backButtonImage forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
     
     
-    // TITLE
+    
+    
+    // MAIN SCROLL VIEW
     // =====
-    self.navigationItem.title = self.photoGalleryName;
+    // scroll view de show ra hinh anh
     
-    
-    // TABBAR
-    // =====
-    // boi vi trang am nhac thi khong co tab nao het
-    // nen tabbar dua vao chi voi muc dich
-    // show ra cai line (1px) mau hong, va cai shadow thoi
-    
-    AUITabBar *aTabbar = [[AUITabBar alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
-    UIColor *myPinkColor = [UIColor colorWithRed:(float)237/255 green:0 blue:(float)140/255 alpha:1];
-    [aTabbar setBackgroundColor:myPinkColor];
-    [aTabbar setBottomShadowImage:[UIImage imageNamed:@"tabbar_bottom_shadow.png"]];
-    [self.view addSubview:aTabbar];
-    
-    
-    
-    // Do any additional setup after loading the view.
-    self.mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 1, self.view.frame.size.width, self.view.frame.size.height - 22 /*stt*/ - 42 /*nav*/ - 1 /*tab*/ - ([[PlayingMusicView sharePlaying] isHide] ? 0 : playingMusicViewHeight))];
+    self.mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     
     self.mainScrollView.pagingEnabled = YES;
     self.mainScrollView.showsHorizontalScrollIndicator = NO;
@@ -86,8 +70,9 @@ const int kGallerySpaceBetweenImage = 0;
     
     CGRect innerScrollFrame = self.mainScrollView.bounds;
     
-    for(NSDictionary *photoItem in self.photosGallery){
-        UIImageView *imageForZooming = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, self.view.frame.size.height)];
+    for(NSDictionary *photoItem in self.photosGallery)
+    {
+        UIImageView *imageForZooming = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
         imageForZooming.image = [photoItem objectForKey:@"image"];
         imageForZooming.tag = 100;
         [imageForZooming setContentMode:UIViewContentModeScaleAspectFit];
@@ -101,9 +86,10 @@ const int kGallerySpaceBetweenImage = 0;
         
         UIScrollView *pageScrollView = [[UIScrollView alloc]
                                         initWithFrame:innerScrollFrame];
+        
         //[pageScrollView setContentMode:UIViewContentModeScaleAspectFit];
         pageScrollView.minimumZoomScale = 1.0f;
-        pageScrollView.maximumZoomScale = 5.0f;
+        pageScrollView.maximumZoomScale = 2.0f;
         pageScrollView.zoomScale = 1.0f;
         pageScrollView.contentSize = imageForZooming.bounds.size;
         pageScrollView.delegate = self;
@@ -114,8 +100,8 @@ const int kGallerySpaceBetweenImage = 0;
         [self.mainScrollView addSubview:pageScrollView];
         
         innerScrollFrame.origin.x += innerScrollFrame.size.width;
-
     }
+    
     scrollSize = innerScrollFrame.origin.x;
     self.mainScrollView.contentSize = CGSizeMake(innerScrollFrame.origin.x, self.mainScrollView.bounds.size.height);
     
@@ -123,22 +109,49 @@ const int kGallerySpaceBetweenImage = 0;
     
     isHide = YES;
     
+    
     // UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideOutOfView)];
     // [self.view addGestureRecognizer:tapGesture];
     
     // update to current selected
     
     [self.mainScrollView setContentOffset:CGPointMake(self.mainScrollView.frame.size.width * self.currentPhotoId, 0) animated:YES];
+    
+    
+    // bring back button too top
+    [self.view bringSubviewToFront:backButton];
 }
 
-- (void) menuButtonClick{
-    [self.navigationController popViewControllerAnimated:YES];
+- (void) viewDidAppear:(BOOL)animated
+{
+    // hide status bar
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    // tra status bar ve lai nhu cu
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
 }
 
 
-- (UIScrollView *) scrollView {
+#pragma mark - Button delegate
+
+- (void) backButtonClick:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+
+#pragma mark - Scroll delegate
+
+- (UIScrollView *) scrollView
+{
     CGFloat currentOffset = self.mainScrollView.contentOffset.x;
-    if(currentOffset >= self.mainScrollView.contentSize.width){
+    if(currentOffset >= self.mainScrollView.contentSize.width)
+    {
         [self.mainScrollView setContentOffset:CGPointMake(0, self.mainScrollView.bounds.size.height) animated:YES];
     }else{
         [self.mainScrollView setContentOffset:CGPointMake(currentOffset, self.mainScrollView.bounds.size.height) animated:YES];
@@ -147,7 +160,8 @@ const int kGallerySpaceBetweenImage = 0;
 }
 
 
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
     return [scrollView viewWithTag:100];
 }
 

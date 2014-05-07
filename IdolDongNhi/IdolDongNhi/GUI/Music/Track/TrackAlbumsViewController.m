@@ -17,8 +17,7 @@
 @interface TrackAlbumsViewController ()
 {
     UILabel *trackTitle;
-    UIImageView *trackImageView;
-    UILabel *trackLyrics;
+    UITextView *trackLyricView;
     UIButton *playAndPause;
     UIButton *nextButton;
     UIButton *prevButton;
@@ -91,7 +90,7 @@
     // =====
     // hien hinh cai dia quay quay du du
     
-    UIImageView *discView = [[UIImageView alloc] initWithFrame:CGRectMake(55, 16, 211, 211)];
+    UIImageView *discView = [[UIImageView alloc] initWithFrame:CGRectMake(55, 10, 211, 211)];
     [discView setImage:[UIImage imageNamed:@"disc"]];
     [self.view addSubview:discView];
     
@@ -107,36 +106,29 @@
     
 
     
-    // LYRIC
+    // LYRIC VIEW
     // =====
-/*
-    trackLyrics = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 90)];
-    trackLyrics.textAlignment= NSTextAlignmentCenter;
-    trackLyrics.font= [UIFont fontWithName:@"Arial" size:10];
-    [trackLyrics setNumberOfLines:0];
-    [trackLyrics setText:@"Từng đêm ngày qua từ đâu chợt em nhận ra ánh mắt đắm say cứ mãi dõi theo bóng ai từng giây   \nKìa em là ai làm bao vệ tinh khờ dại cứ thế khiến cho bao anh ngất ngây mong em về đây   \nHey boy, I wanna be with you, I couldn't tell I'm away from the truth   \nHey boy, I wanna be with you, I couldn't tell I'm away from the truth   \nSao anh cứ mãi lạnh lùng , sao anh cứ mãi ngại ngùng để em từng đêm ngu ngơ mong anh   \n  Cho em theo bước bên anh cho nhau giây phút ngọt ngào để tay cầm tay đi trong yêu thương mãi về sau     \nI wanna be with you  \nI wanna be with you"];
-    // [self.view addSubview:self.trackLyrics];
-    // add long text to label
-    // set line break mode to word wrap
-    trackLyrics.lineBreakMode = NSLineBreakByWordWrapping;
-    // set number of lines to zero
-    trackLyrics.numberOfLines = 0;
-    // resize label
-    [trackLyrics sizeToFit];
     
-    UIScrollView *viewScroll = [[UIScrollView alloc] initWithFrame:CGRectMake(10, 250, 300, 40)];
-    viewScroll.scrollEnabled = YES;
-    viewScroll.showsVerticalScrollIndicator = YES;
+    UIFont *fontRegular = [UIFont fontWithName:@"OpenSans" size:13];
     
-    [viewScroll setContentSize:CGSizeMake(trackLyrics.frame.size.width, trackLyrics.frame.size.height)];
-    [viewScroll addSubview:trackLyrics];
-    [self.view addSubview:viewScroll];
+    trackLyricView = [[UITextView alloc] initWithFrame:CGRectMake(20, 232, 280, [[AUIFreedomController sharedFreedomController] getHeight] - 390)];
+    [trackLyricView setTextAlignment: NSTextAlignmentCenter];
+    [trackLyricView setBackgroundColor:[UIColor clearColor]];
+    [trackLyricView setTextColor:[UIColor whiteColor]];
+    [trackLyricView setFont:fontRegular];
+    [trackLyricView setSelectable:NO];
+    [trackLyricView setEditable:NO];
+    [self.view addSubview:trackLyricView];
     
-    [trackLyrics setTextColor:[UIColor whiteColor]];
- 
-*/
-  
-    
+    NSString *lyric = (NSString *)[self.trackInfo objectForKey:@"lyric"];
+    if(![lyric isEqualToString:@""])
+    {
+        [trackLyricView setText:lyric];
+    }
+    else
+    {
+        [trackLyricView setHidden:YES];
+    }
     
     
     // MUSIC CONTROL BUTTONS
@@ -309,7 +301,7 @@
     NSInteger playingSongId = [(NSString *)[self.trackInfo objectForKey:@"id"] integerValue];
     
     // xem coi current index cua cai song dang playing
-    NSInteger playingSongIndex = [[PlayingMusicView sharePlaying] findSongIndexFromSongId:[[PlayingMusicView sharePlaying] listSongs] withId:playingSongId];
+    NSInteger playingSongIndex = [[PlayingMusicView sharePlaying] findSongIndexFromSongId:[[PlayingMusicView sharePlaying] listSongs] withId:(int)playingSongId];
     
     // current list song
     NSMutableArray *playingListSong = (NSMutableArray *)[self.albumInfo objectForKey:@"tracks"];
@@ -326,7 +318,7 @@
     NSInteger playingSongId = [(NSString *)[self.trackInfo objectForKey:@"id"] integerValue];
     
     // xem coi current index cua cai song dang playing
-    NSInteger playingSongIndex = [[PlayingMusicView sharePlaying] findSongIndexFromSongId:[[PlayingMusicView sharePlaying] listSongs] withId:playingSongId];
+    NSInteger playingSongIndex = [[PlayingMusicView sharePlaying] findSongIndexFromSongId:[[PlayingMusicView sharePlaying] listSongs] withId:(int)playingSongId];
     
     // current list song
     NSMutableArray *playingListSong = (NSMutableArray *)[self.albumInfo objectForKey:@"tracks"];
@@ -379,11 +371,11 @@
     
     // presenting song id
     NSInteger presentingSongId = [(NSString *)[self.trackInfo objectForKey:@"id"] integerValue];
-    NSLog(@"viewDidAppear: presentingSongId: %i", presentingSongId);
+    //NSLog(@"viewDidAppear: presentingSongId: %i", presentingSongId);
     
     // current playing song
     NSInteger currentPlayingSongId = [[PlayingMusicView sharePlaying] currentSongId];
-    NSLog(@"viewDidAppear: currentPlayingSongId: %i", currentPlayingSongId);
+    //NSLog(@"viewDidAppear: currentPlayingSongId: %i", currentPlayingSongId);
     
     // neu nhu bai hat trong view nay
     // va bai hat he thong dang play khac nhau
@@ -406,7 +398,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-    NSLog(@"here viewDidDisappear");
+    //NSLog(@"here viewDidDisappear");
     
     // tat delegate
     [[PlayingMusicView sharePlaying] setDelegate:nil];
@@ -415,7 +407,7 @@
     // neu nhu co thi se show len thanh music bar
     if([[PlayingMusicView sharePlaying] isPlaying] || [[PlayingMusicView sharePlaying] getSongCurrentDuration] > 0)
     {
-        NSLog(@"here is playing");
+        //NSLog(@"here is playing");
         [ManageSize showMusicBar];
     }
 }
@@ -430,6 +422,11 @@
     // nhay qua bai tiep theo play thoi
     [[PlayingMusicView sharePlaying] pauseAudio];
     [self actionNextSong:nil];
+}
+
+- (void) playStatuUpdate:(BOOL)playState
+{
+    
 }
 
 
@@ -458,7 +455,7 @@
     NSMutableArray *playingListSong = (NSMutableArray *)[self.albumInfo objectForKey:@"tracks"];
     
     // tim ra index tuong ung voi cai song id
-    NSInteger newSongIndex = [[PlayingMusicView sharePlaying] findSongIndexFromSongId:playingListSong withId:songId];
+    NSInteger newSongIndex = [[PlayingMusicView sharePlaying] findSongIndexFromSongId:playingListSong withId:(int)songId];
     
     // neu nhu khong tim ra thi thoi
     if(newSongIndex < 0)
@@ -497,7 +494,7 @@
     
     // stop play truoc tien
     [sharePlaying pauseAudio];
-    NSLog(@"sharePlaying pauseAudio");
+    //NSLog(@"sharePlaying pauseAudio");
     
     // update 1 so thu
     
@@ -506,14 +503,14 @@
     sharePlaying.listSongs = (NSMutableArray *)[self.albumInfo objectForKey:@"tracks"];
     
     // update current song id
-    sharePlaying.currentSongId = preparingSongId;
+    sharePlaying.currentSongId = (int)preparingSongId;
     
     // update current album
     sharePlaying.currentAlbumTitle = [self.albumInfo objectForKey:@"name"];
     sharePlaying.currentAlbumImage = [ManageSize getImageFromServer:[self.albumInfo objectForKey:@"imageSource"]];
     
     // tim ra link cua bai hat
-    NSString *presentingSongUrl = [sharePlaying findSongUrlExternalFromSongId:sharePlaying.listSongs withId:preparingSongId];
+    NSString *presentingSongUrl = [sharePlaying findSongUrlExternalFromSongId:sharePlaying.listSongs withId:(int)preparingSongId];
     
     // chua bi de play thoi
     //[sharePlaying preparePlayWithExternalStringUrl:[ManageSize addHTTP:presentingSongUrl] andSongInfo:nil];

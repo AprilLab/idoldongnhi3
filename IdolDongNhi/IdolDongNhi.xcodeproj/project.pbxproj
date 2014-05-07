@@ -38,6 +38,7 @@
 		516742721915F76D001561AC /* icon_prev_25x25@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 516742701915F76D001561AC /* icon_prev_25x25@2x.png */; };
 		51674274191636BD001561AC /* disc_35x35@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 51674273191636BD001561AC /* disc_35x35@2x.png */; };
 		5167427719164D4D001561AC /* AUIMovingImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 5167427619164D4D001561AC /* AUIMovingImages.m */; };
+		516783A91917968900525B5E /* back_49x49@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 516783A81917968900525B5E /* back_49x49@2x.png */; };
 		516BF3771910A35500F75FA4 /* UIImage+JSONCategories.m in Sources */ = {isa = PBXBuildFile; fileRef = 516BF3761910A35500F75FA4 /* UIImage+JSONCategories.m */; };
 		516C338C190B53DA00C9670F /* AUIFreedomController.m in Sources */ = {isa = PBXBuildFile; fileRef = 516C338B190B53DA00C9670F /* AUIFreedomController.m */; };
 		51786765190D515D006C68DC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51786764190D515D006C68DC /* HomeViewController.m */; };
@@ -234,6 +235,7 @@
 		51674273191636BD001561AC /* disc_35x35@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "disc_35x35@2x.png"; path = "music/disc_35x35@2x.png"; sourceTree = "<group>"; };
 		5167427519164D4D001561AC /* AUIMovingImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AUIMovingImages.h; path = Library/AUIMovingImages.h; sourceTree = "<group>"; };
 		5167427619164D4D001561AC /* AUIMovingImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AUIMovingImages.m; path = Library/AUIMovingImages.m; sourceTree = "<group>"; };
+		516783A81917968900525B5E /* back_49x49@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back_49x49@2x.png"; sourceTree = "<group>"; };
 		516BF3751910A35500F75FA4 /* UIImage+JSONCategories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+JSONCategories.h"; path = "Library/UIImage+JSONCategories.h"; sourceTree = "<group>"; };
 		516BF3761910A35500F75FA4 /* UIImage+JSONCategories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+JSONCategories.m"; path = "Library/UIImage+JSONCategories.m"; sourceTree = "<group>"; };
 		516C338A190B53DA00C9670F /* AUIFreedomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AUIFreedomController.h; path = Library/AUIFreedomController.h; sourceTree = "<group>"; };
@@ -349,7 +351,7 @@
 		54ACF40819169DB600D100C6 /* DongNhiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DongNhiViewController.m; path = GUI/DongNhi/DongNhiViewController.m; sourceTree = "<group>"; };
 		54B2A2A3190EEE9B00F19B1A /* disc_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "disc_play@2x.png"; path = "music/disc_play@2x.png"; sourceTree = "<group>"; };
 		54B2A2A4190EEE9B00F19B1A /* disc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "disc@2x.png"; path = "music/disc@2x.png"; sourceTree = "<group>"; };
-		54CB2F0B190B39F800C60AB9 /* IdolDongNhi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IdolDongNhi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		54CB2F0B190B39F800C60AB9 /* Đông Nhi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Đông Nhi.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		54CB2F0E190B39F800C60AB9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		54CB2F10190B39F800C60AB9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		54CB2F12190B39F800C60AB9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -572,6 +574,7 @@
 		518344DE190CEAD700F6C80D /* navigation */ = {
 			isa = PBXGroup;
 			children = (
+				516783A81917968900525B5E /* back_49x49@2x.png */,
 				510AB2E21916E99100EA8AD2 /* home-nav-transparent-border@2x.png */,
 				510AB2E01916E91200EA8AD2 /* home-nav@2x.png */,
 				518344DF190CEAD700F6C80D /* bg_navigation_bar@2x.png */,
@@ -724,7 +727,7 @@
 		54CB2F0C190B39F800C60AB9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				54CB2F0B190B39F800C60AB9 /* IdolDongNhi.app */,
+				54CB2F0B190B39F800C60AB9 /* Đông Nhi.app */,
 				54CB2F26190B39F800C60AB9 /* IdolDongNhiTests.xctest */,
 			);
 			name = Products;
@@ -978,7 +981,7 @@
 			);
 			name = IdolDongNhi;
 			productName = IdolDongNhi;
-			productReference = 54CB2F0B190B39F800C60AB9 /* IdolDongNhi.app */;
+			productReference = 54CB2F0B190B39F800C60AB9 /* Đông Nhi.app */;
 			productType = "com.apple.product-type.application";
 		};
 		54CB2F25190B39F800C60AB9 /* IdolDongNhiTests */ = {
@@ -1116,6 +1119,7 @@
 				5167426D1915F642001561AC /* icon_random_18x18@2x.png in Resources */,
 				51DF14E119158B8500C1ACF8 /* icon_disk_72x72@2x.png in Resources */,
 				5183450F190CEAD700F6C80D /* profile@2x.png in Resources */,
+				516783A91917968900525B5E /* back_49x49@2x.png in Resources */,
 				5178677D190D64F9006C68DC /* post_image009.jpg in Resources */,
 				5183450C190CEAD700F6C80D /* images@2x.png in Resources */,
 				518344FB190CEAD700F6C80D /* heart@2x.png in Resources */,
@@ -1335,7 +1339,7 @@
 				INFOPLIST_FILE = "IdolDongNhi/IdolDongNhi-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Đông Nhi";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1354,7 +1358,7 @@
 				INFOPLIST_FILE = "IdolDongNhi/IdolDongNhi-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Đông Nhi";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

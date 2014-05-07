@@ -25,7 +25,7 @@
     [self setTintColor:[UIColor whiteColor]];
     
     
-    UIFont *fontRegular = [UIFont fontWithName:@"OpenSans" size:14];
+    //UIFont *fontRegular = [UIFont fontWithName:@"OpenSans" size:14];
     UIFont *fontBold = [UIFont fontWithName:@"OpenSans-Bold" size:15];
     
     

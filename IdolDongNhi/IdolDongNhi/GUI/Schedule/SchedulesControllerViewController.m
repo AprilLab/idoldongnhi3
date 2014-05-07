@@ -80,14 +80,13 @@
     
     
     
-    
     // PAGE VIEW THANG NAM
     // =====
     // level tren cung se la thang cua 1 nam
     // va cai nay that ra se la 1 cai page view thoi
     monthPageView = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll
                                                     navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal
-                                                                  options:[NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:50.0f] forKey:UIPageViewControllerOptionInterPageSpacingKey]];
+                                                                  options:@{UIPageViewControllerOptionInterPageSpacingKey: @0}];
     [monthPageView.view setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [monthPageView setDataSource:self];
     [self addChildViewController:monthPageView];
@@ -184,7 +183,7 @@
 //-(void)getGalleryHasId:(int)localGalleryId listphotoStart:(int)start limit:(int)limit
 -(void)getUpcomingEvents
 {
-    NSLog(@"getUpcomingEvents ...");
+    //NSLog(@"getUpcomingEvents ...");
     
     NSDictionary *listupcomingeventDictionary = [ManageSize getDictionaryJSONFromServerWithAPIPath:@"listupcomingevent"];
     
@@ -205,7 +204,7 @@
     // get ra list upcoming event luon
     APIListUpcomingEvent = (NSArray *)[data objectForKey:@"listupcomingevent"];
     
-    NSLog(@"getUpcomingEvents: done!");
+    //NSLog(@"getUpcomingEvents: done!");
 }
 
 

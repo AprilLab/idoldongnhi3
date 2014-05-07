@@ -158,7 +158,7 @@ UILabel *lblNews;
             UIImage *image = (imageSource != NULL) ? [ManageSize getImageFromServer:imageSource] : [UIImage new];
             movingImage = image;
             movingLabel = content;
-            NSLog(@"movingLabel %@", movingLabel);
+            //NSLog(@"movingLabel %@", movingLabel);
             break;
         }
     }

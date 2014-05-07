@@ -73,6 +73,8 @@
     albumCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 1, self.view.frame.size.width, self.view.frame.size.height - 22 /*stt*/ - 42 /*nav*/ - 1 /*tab*/ - ([[PlayingMusicView sharePlaying] isHide] ? 0 : playingMusicViewHeight))
                                              collectionViewLayout:[[AlbumViewFlowLayout alloc] init]];
     [albumCollectionView setBackgroundColor:[UIColor clearColor]];
+    [albumCollectionView setBounces:YES];
+    [albumCollectionView setBouncesZoom:YES];
     
     // dang ky class cho 1 cai cell de ma reuse duoc
     [albumCollectionView registerClass:[AlbumsCell class] forCellWithReuseIdentifier:@"albumCellIdentifier"];
@@ -157,7 +159,7 @@
 {
     AlbumTracksViewController *track= [[AlbumTracksViewController alloc] init];
     track.APIListalbumListalbum = APIListalbumListalbum;
-    track.currentPresentingAlbumId = indexPath.row;
+    track.currentPresentingAlbumId = (int)indexPath.row;
     [self.navigationController pushViewController:track animated:YES];
     
     return NO;
@@ -267,7 +269,7 @@
     });
     
     // load album
-    [self getListalbumStart:APIListalbumStart limit:4];
+    [self getListalbumStart:APIListalbumStart limit:7];
     
     // reload view in main thread
     [self performSelectorOnMainThread:@selector(mainthreadLoadmoreListalbumDone) withObject:nil waitUntilDone:YES];
