@@ -269,32 +269,29 @@ static id sharePlaying;
 
 -(void) setupAVPlayerForURL: (NSURL*) url
 {
+    [playPauseButton setEnabled:NO];
     AVAsset *asset = [AVURLAsset URLAssetWithURL:url options:nil];
     AVPlayerItem *anItem = [AVPlayerItem playerItemWithAsset:asset];
     
-    if(self.avPlayer == NULL)
-    {
-        self.avPlayer = [AVPlayer playerWithPlayerItem:anItem];
-        
-        // add observer to check status of avplayer
-        [self.avPlayer addObserver:self forKeyPath:@"status" options:0 context:nil];
-        
-        // add observer to check play ended
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:anItem];
-        
-        [self.avPlayer addObserver:self
-                        forKeyPath:@"currentItem.loadedTimeRanges"
-                           options:NSKeyValueObservingOptionNew
-                           context:kdcTimeRangesLoaded];
-    }
-    else
-    {
-        [self.avPlayer pause];
-        
-        self.avPlayer = [AVPlayer playerWithPlayerItem:anItem];
-    }
+    [self.avPlayer pause];
     
+    [self.avPlayer removeObserver:self forKeyPath:@"status"];
+    [self.avPlayer removeObserver:self forKeyPath:@"currentItem.loadedTimeRanges"];
+
+    self.avPlayer = nil;
     
+    self.avPlayer = [AVPlayer playerWithPlayerItem:anItem];
+    
+    // add observer to check status of avplayer
+    [self.avPlayer addObserver:self forKeyPath:@"status" options:0 context:nil];
+    
+    // add observer to check play ended
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:anItem];
+    
+    [self.avPlayer addObserver:self
+                    forKeyPath:@"currentItem.loadedTimeRanges"
+                       options:NSKeyValueObservingOptionNew
+                       context:kdcTimeRangesLoaded];
     
     
     
@@ -308,6 +305,8 @@ static id sharePlaying;
     
     progressDuration.value = 0.0f;
     progressDownload.progress = 0.0;
+    
+    [playPauseButton setEnabled:YES];
 }
 
 
