@@ -368,7 +368,6 @@
 {
     [super viewDidAppear:animated];
     
-    
     // presenting song id
     NSInteger presentingSongId = [(NSString *)[self.trackInfo objectForKey:@"id"] integerValue];
     //NSLog(@"viewDidAppear: presentingSongId: %i", presentingSongId);
@@ -521,7 +520,6 @@
     // chuan bi de play thoi
     [sharePlaying prepareInBackgroundToPlayNewSongWithExternalStringUrl:[ManageSize addHTTP:presentingSongUrl]];
     
-    
     // sau do la quay lai main thread de goi call back thoi
     [self performSelectorOnMainThread:@selector(donePreparePlayNewSong) withObject:nil waitUntilDone:NO];
 }
@@ -566,11 +564,13 @@
         
         
         NSArray *loadedTimeRanges = [[playingView.avPlayer currentItem] loadedTimeRanges];
-        CMTimeRange timeRange = [[loadedTimeRanges objectAtIndex:0] CMTimeRangeValue];
-        float durationSeconds = CMTimeGetSeconds(timeRange.duration);
-        CMTime duration = playingView.avPlayer.currentItem.asset.duration;
-        seconds = CMTimeGetSeconds(duration);
-        progressDownload.progress = durationSeconds / seconds;
+        if([loadedTimeRanges count] > 0){
+            CMTimeRange timeRange = [[loadedTimeRanges objectAtIndex:0] CMTimeRangeValue];
+            float durationSeconds = CMTimeGetSeconds(timeRange.duration);
+            CMTime duration = playingView.avPlayer.currentItem.asset.duration;
+            seconds = CMTimeGetSeconds(duration);
+            progressDownload.progress = durationSeconds / seconds;
+        }
     }
 }
 

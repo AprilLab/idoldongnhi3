@@ -220,11 +220,13 @@ static id sharePlaying;
         
         
         NSArray *loadedTimeRanges = [[self.avPlayer currentItem] loadedTimeRanges];
-        CMTimeRange timeRange = [[loadedTimeRanges objectAtIndex:0] CMTimeRangeValue];
-        float durationSeconds = CMTimeGetSeconds(timeRange.duration);
-        CMTime duration = self.avPlayer.currentItem.asset.duration;
-        seconds = CMTimeGetSeconds(duration);
-        progressDownload.progress = durationSeconds / seconds;
+        if([loadedTimeRanges count] > 0){
+            CMTimeRange timeRange = [[loadedTimeRanges objectAtIndex:0] CMTimeRangeValue];
+            float durationSeconds = CMTimeGetSeconds(timeRange.duration);
+            CMTime duration = self.avPlayer.currentItem.asset.duration;
+            seconds = CMTimeGetSeconds(duration);
+            progressDownload.progress = durationSeconds / seconds;
+        }
     }
 }
 
@@ -244,7 +246,6 @@ static id sharePlaying;
 
 - (void) preparePlayWithExternalStringUrl:(NSString *)urlString andSongInfo:(NSMutableDictionary *)_songInfo
 {
-    
     NSURL *url = [[NSURL alloc] initWithString:urlString];
     
     [self setupAVPlayerForURL:url];
@@ -265,11 +266,11 @@ static id sharePlaying;
     // END TEST DATA SONG INFO
     
     [self loadNowPlayingInfo:self.songInfo];
+    
 }
 
 -(void) setupAVPlayerForURL: (NSURL*) url
 {
-    [playPauseButton setEnabled:NO];
     AVAsset *asset = [AVURLAsset URLAssetWithURL:url options:nil];
     AVPlayerItem *anItem = [AVPlayerItem playerItemWithAsset:asset];
     
@@ -306,7 +307,7 @@ static id sharePlaying;
     progressDuration.value = 0.0f;
     progressDownload.progress = 0.0;
     
-    [playPauseButton setEnabled:YES];
+    
 }
 
 
@@ -349,11 +350,13 @@ static id sharePlaying;
     // check rate loaded then calculation time loaded duration
     if (kdcTimeRangesLoaded == context) {
         NSArray *loadedTimeRanges = [[self.avPlayer currentItem] loadedTimeRanges];
-        CMTimeRange timeRange = [[loadedTimeRanges objectAtIndex:0] CMTimeRangeValue];
-        float durationSeconds = CMTimeGetSeconds(timeRange.duration);
-        CMTime duration = self.avPlayer.currentItem.asset.duration;
-        float seconds = CMTimeGetSeconds(duration);
-        progressDownload.progress = durationSeconds / seconds;
+        if([loadedTimeRanges count] > 0){
+            CMTimeRange timeRange = [[loadedTimeRanges objectAtIndex:0] CMTimeRangeValue];
+            float durationSeconds = CMTimeGetSeconds(timeRange.duration);
+            CMTime duration = self.avPlayer.currentItem.asset.duration;
+            float seconds = CMTimeGetSeconds(duration);
+            progressDownload.progress = durationSeconds / seconds;
+        }
     }
 }
 
@@ -638,9 +641,10 @@ static id sharePlaying;
 
 -(void)bgthreadPrepareToPlayNewSong
 {
+    [playPauseButton setEnabled:NO];
     [sharePlaying preparePlayWithExternalStringUrl:preparingExternalStringUrl andSongInfo:nil];
     [sharePlaying playAudio];
-    
+    [playPauseButton setEnabled:YES];
     // quay lai main thread de goi call back
     [self performSelectorOnMainThread:@selector(mainthreadDonePrepareToPlayNewSong) withObject:nil waitUntilDone:NO];
 }
