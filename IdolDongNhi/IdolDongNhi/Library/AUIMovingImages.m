@@ -46,7 +46,7 @@
     transparentView.alpha= 0.6;
     [scroll addSubview:transparentView];
     
-    UILabel *lblTextMoving = [[UILabel alloc] initWithFrame:CGRectMake(5, 60, self.frame.size.width - 10, 18)];
+    UILabel *lblTextMoving = [[UILabel alloc] initWithFrame:CGRectMake(15, 50, self.frame.size.width - 20, 18)];
     lblTextMoving.text= self.textMoving;
     lblTextMoving.textColor= [UIColor whiteColor];
     lblTextMoving.font= self.font;

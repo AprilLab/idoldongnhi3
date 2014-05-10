@@ -36,24 +36,16 @@ UILabel *lblNews;
     [self.view sendSubviewToBack:bgImageView];
     [bgImageView setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin];
     
-
-    
-    // TITLE: DONG NHI
-    // ======
-    UILabel *lblTitle= [[UILabel alloc]initWithFrame:CGRectMake(0, 40, 320, 80)];
-    lblTitle.font = [UIFont fontWithName:@"UTM Bitsumishi Pro" size:40];
-    lblTitle.textColor= [UIColor whiteColor];
-    lblTitle.textAlignment= NSTextAlignmentCenter;
-    lblTitle.text= @"ĐÔNG NHI";
-    [lblTitle setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin];
-    
-    [self.view addSubview:lblTitle];
     
 
+    // get data for homepage
     [self getDataHomepage];
+    
+    
+    
     // SLIDER
     // ======
-    AUICarousel *carousel = [[AUICarousel alloc] initWithFrame:CGRectMake(0, 60, 320, 250)];
+    AUICarousel *carousel = [[AUICarousel alloc] initWithFrame:CGRectMake(0, 120, 320, [[AUIFreedomController sharedFreedomController] getHeight] - 80 - 120)];
     [carousel setImages:imagesSlider];
     [self.view addSubview:carousel];
     
@@ -64,7 +56,7 @@ UILabel *lblNews;
     
     // MOVING IMAGES
     // ======
-    AUIMovingImages *movingImages = [[AUIMovingImages alloc] initWithFrame:CGRectMake(20, 385, 280, 80)];
+    AUIMovingImages *movingImages = [[AUIMovingImages alloc] initWithFrame:CGRectMake(0, [[AUIFreedomController sharedFreedomController] getHeight] - 80, 320, 80)];
     movingImages.isMovingImage = YES;
     UIFont *fontRegular = [UIFont fontWithName:@"OpenSans" size:12];
     movingImages.font = fontRegular;
@@ -72,6 +64,19 @@ UILabel *lblNews;
     [self.view addSubview:movingImages];
     UITapGestureRecognizer *tapMovingView = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDongNhiNews:)];
     [movingImages addGestureRecognizer:tapMovingView];
+    
+    
+    
+    // TITLE: DONG NHI
+    // ======
+    UILabel *lblTitle= [[UILabel alloc]initWithFrame:CGRectMake(0, 40, 320, 80)];
+    lblTitle.font = [UIFont fontWithName:@"UTM Bitsumishi Pro" size:40];
+    lblTitle.textColor= [UIColor whiteColor];
+    lblTitle.textAlignment= NSTextAlignmentCenter;
+    lblTitle.text= @"ĐÔNG NHI";
+    [lblTitle setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin];
+    [self.view addSubview:lblTitle];
+    
     
     
     // MENU BUTTON
@@ -101,7 +106,8 @@ UILabel *lblNews;
     [mainWrapper.view bringSubviewToFront:[[sharedFreedomController getChildViewControllerWithName:@"newsView"] view]];
 }
 
-- (void) getDataHomepage{
+- (void) getDataHomepage
+{
     imagesSlider = [[NSMutableArray alloc] init];
     NSDictionary *listhomepageDictionary = [ManageSize getDictionaryJSONFromServerWithAPIPath:@"home"];
     

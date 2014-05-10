@@ -25,7 +25,7 @@
 
 - (void)setup
 {
-    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(20, 64, 280, 250)];
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
     [scrollView setShowsHorizontalScrollIndicator:NO];
     [scrollView setPagingEnabled:YES];
     [scrollView setScrollEnabled:YES];

@@ -11,6 +11,7 @@
 #import "HomeViewController.h"
 #import "PlayingMusicView.h"
 #import "MainMenuViewController.h"
+#import "LoginViewController.h"
 #import "NewsViewController.h"
 #import "GalleryAlbumsViewController.h"
 #import "VideoListController.h"
@@ -185,6 +186,16 @@
     [mainMenuViewController.view setHidden:YES];
     
     // </ MAIN MENU >
+    
+    
+    
+    // < LOGIN VIEW >
+    //LoginViewController *loginViewController = [[LoginViewController alloc] init];
+    //[sharedFreedomController addChildViewController:loginViewController withName:@"loginView" withFrame:CGRectNull];
+    //[loginViewController.view setHidden:NO];
+    
+    // </ LOGIN VIEW >
+
     
     
     

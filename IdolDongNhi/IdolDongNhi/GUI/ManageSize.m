@@ -7,6 +7,7 @@
 //
 
 #import "ManageSize.h"
+#import "ZMVC.h"
 #import "AUIFreedomController.h"
 #import "PlayingMusicView.h"
 #import "MainMenuViewController.h"
@@ -136,7 +137,7 @@
         [aboutMainContentWewView setFrame:CGRectMake(aboutMainContentWewView.frame.origin.x, aboutMainContentWewView.frame.origin.y, tempW, tempH)];
     // }
     
-    // trang musc {
+    // trang music {
     tempH = screenHeight - 22 /*stt*/ - 42 /*nav*/ - 1 /*tab*/ - 215 /*top*/ - ([[PlayingMusicView sharePlaying] isHide] ? 0 : playingMusicViewHeight);
     if(listTrackCollectionView != NULL)
         [listTrackCollectionView setFrame:CGRectMake(0, 216, tempW, tempH)];
@@ -222,6 +223,8 @@
 +(NSDictionary *)getDictionaryJSONFromServer:(NSString *)urlString
 {
     urlString = [ManageSize addHTTP:urlString];
+    
+    return [ZMVC getDictionaryJSONFromServer:urlString];
     
     //NSString *userAgent = @"Mozilla/5.0 (iPhone; CPU iPhone OS 7_1 like Mac OS X) AppleWebKit/537.51.2 (KHTML, like Gecko) Mobile/11D167";
     NSString *userAgent = @"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.117 Safari/537.36";
