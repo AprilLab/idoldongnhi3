@@ -346,6 +346,8 @@ static id sharePlaying;
             
         }
     }
+
+    
     
     // check rate loaded then calculation time loaded duration
     if (kdcTimeRangesLoaded == context) {
